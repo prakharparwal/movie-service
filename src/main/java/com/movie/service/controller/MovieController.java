@@ -6,6 +6,7 @@ import com.movie.service.data.ResponseText;
 import com.movie.service.service.MovieService;
 import com.movie.service.util.MovieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,7 @@ public class MovieController {
     @GetMapping("/movies")
     @ResponseBody
     List<Movie> getAllMovies() {
-        List<Movie> movies = new ArrayList<>();
-        return movies;
+        return movieService.getAllMovies();
     }
 
     @RequestMapping(value = "/addMovie", method = RequestMethod.POST, headers = "Accept=application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -56,5 +56,14 @@ public class MovieController {
     ResponseEntity<String> getResponseOk() {
         return ResponseEntity.ok("This is response");
     }
+
+
+    @RequestMapping(value = "/deleteMovie/{movieId}", method = RequestMethod.DELETE)
+    @ResponseBody
+    String deleteMovie(@PathVariable int movieId) {
+        movieService.deleteMovie(movieId);
+        return "Movie got deleted";
+    }
+
 
 }
