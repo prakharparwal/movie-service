@@ -15,10 +15,13 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	implementation 'org.flywaydb:flyway-core'
+
 	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.37'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.3.RELEASE'
+	compile group: 'org.apache.kafka', name: 'kafka_2.13', version: '2.6.0'
 
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	runtimeOnly group: 'com.h2database', name: 'h2', version: '1.4.193'
 	runtimeOnly 'org.postgresql:postgresql'
 	runtime group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.3.3.RELEASE'

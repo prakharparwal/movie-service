@@ -25,4 +25,16 @@ public class MovieService {
         movieRepository.deleteById(movieId);
     }
 
+    public Movie findMovieByName(String movieName) {
+        Movie movie = movieRepository.findByName(movieName);
+        System.out.println(movie.getName());
+        System.out.println(movie.getId());
+        System.out.println(movie.getReleaseYear());
+        return movie;
+    }
+
+    public void testException() throws Exception {
+        throw new Exception();
+    }
+
 }

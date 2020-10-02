@@ -1,10 +1,13 @@
 package com.movie.service.data;
 
+import org.apache.kafka.clients.producer.Callback;
+import org.apache.kafka.clients.producer.RecordMetadata;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name ="MOVIE")
-public class Movie {
+public class Movie implements Callback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,5 +60,10 @@ public class Movie {
                 ", name='" + name + '\'' +
                 ", releaseYear=" + releaseYear +
                 '}';
+    }
+
+    @Override
+    public void onCompletion(RecordMetadata metadata, Exception exception) {
+        System.out.println("Ok record produced." +metadata);
     }
 }
